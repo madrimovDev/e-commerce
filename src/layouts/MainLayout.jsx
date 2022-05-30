@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/navbar";
-import query from "../services/api/api.service";
+import { useAllProduct } from "../contexts/AllProducts";
 
 export const MainLayout = () => {
+  const {isError, isLoading, products} = useAllProduct()
+
+  console.log(isError, isLoading, products)
+
   return (
     <div>
       <Navbar />
