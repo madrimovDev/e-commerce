@@ -4,9 +4,7 @@ import Navbar from "../components/navbar";
 import { useAllProduct } from "../contexts/AllProducts";
 
 export const MainLayout = () => {
-  const {isError, isLoading, products} = useAllProduct()
-
-  console.log(isError, isLoading, products)
+  const { isError, isLoading, products } = useAllProduct();
 
   return (
     <div>
