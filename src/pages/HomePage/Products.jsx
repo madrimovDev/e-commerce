@@ -1,4 +1,4 @@
-import { Grid, Skeleton } from "@mui/material";
+import { Grid, Skeleton, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ProductCard } from "../../components/home/ProductCard";
@@ -10,6 +10,7 @@ export const Products = () => {
   const allProduct = useAllProduct();
   const id = useParams().id;
 
+  console.log(allProduct.products)
   useEffect(() => {
     if (id === "all") return;
     getProductsByCategory(id);
@@ -18,7 +19,10 @@ export const Products = () => {
   if (!id) {
     return (
       <div>
-        <h1>All Products</h1>
+        <Typography sx={{
+          fontSize: [18, 20, 22],
+          mb: [2, 5]
+        }}>All Products</Typography>
         <Grid
           container
           spacing={4}
@@ -48,8 +52,11 @@ export const Products = () => {
 
   return (
     <div>
-      <h1>{id.toUpperCase()} Products</h1>
-      <Grid container spacing={4} justifyContent="center" alignItems="stretch">
+      <Typography sx={{
+        fontSize: [18, 20, 22],
+        mb: [2, 5]
+      }}>{id.toUpperCase()} Products</Typography>
+      <Grid container spacing={4} justifyContent="flex-start" alignItems="stretch">
         {products.isLoading && (
           <>
             <Grid item xs={12}>

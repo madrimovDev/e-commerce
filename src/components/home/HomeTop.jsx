@@ -35,7 +35,7 @@ const HomeTop = () => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
+          alignItems: ["strech", "center"],
           gap: 2,
           mt: [3, 6],
           flexDirection: ["column", "row"],
@@ -94,7 +94,9 @@ const HomeTop = () => {
             alignItems: "center",
           }}
         >
-          <InputBase placeholder="search" />
+          <InputBase placeholder="search" sx={{
+            flex: 1,
+          }}/>
           <IconButton>
             <SearchOutlined />
           </IconButton>
