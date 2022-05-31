@@ -52,10 +52,17 @@ const Navbar = () => {
               anchorElNav={anchorElNav}
               handleCloseNavMenu={handleCloseNavMenu}
             />
-            <Box sx={{display: {xs: "none", md: "block"}}}>
+            <Box sx={{ display: { xs: "none", md: "block" } }}>
               {list.map((item) => {
                 return (
-                  <Button component={Link} to={item.path} startIcon={<item.icon />} variant="text" color="inherit">
+                  <Button
+                    key={item.id}
+                    component={Link}
+                    to={item.path}
+                    startIcon={<item.icon />}
+                    variant="text"
+                    color="inherit"
+                  >
                     {item.title}
                   </Button>
                 );
