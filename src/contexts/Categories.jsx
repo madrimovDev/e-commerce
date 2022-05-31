@@ -7,32 +7,50 @@ const CategoriesContext = createContext({
   categories: [],
 });
 
-CategoriesContext.displayName = "CategoriesContext"
+CategoriesContext.displayName = "CategoriesContext";
 
-export const useCategories = () => useContext(CategoriesContext)
+export const useCategories = () => useContext(CategoriesContext);
 
-const CategoriesProvider = ({children}) => {
-
+const CategoriesProvider = ({ children }) => {
   const [categories, setCategories] = useState({
     isLoading: false,
     isError: false,
     categories: [],
-  })
+  });
 
   useEffect(() => {
-    setCategories({isLoading: true, isError: false, categories: []})
-    query.getAllCategories()
-      .then(result => setCategories({isLoading: false, isError: false, categories: result.data}))
-      .catch((err) => setCategories({isLoading: false, isError: true, categories: []}))
-  }, [])
+    setCategories({ isLoading: true, isError: false, categories: [] });
+    query
+      .getAllCategories()
+      .then((result) => {
+        if (result.name !== "AxiosError") {
+          setCategories({
+            isLoading: false,
+            isError: false,
+            categories: ["all", ...result.data],
+          });
+        } else {
+          setCategories({
+            isLoading: false,
+            isError: true,
+            categories: [],
+          });
+        }
+      })
+      .catch((error) => {
+        setCategories({
+          isLoading: false,
+          isError: true,
+          categories: [],
+        });
+      });
+  }, []);
 
   return (
     <CategoriesContext.Provider value={categories}>
       {children}
     </CategoriesContext.Provider>
-  )
-}
+  );
+};
 
-export default CategoriesProvider
-
-
+export default CategoriesProvider;
