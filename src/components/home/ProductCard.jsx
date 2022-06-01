@@ -50,6 +50,7 @@ export const ProductCard = ({ product }) => {
 					display: 'flex',
 					alignItems: 'center',
 					gap: 1,
+					cursor: 'pointer',
 				}}
 			>
 				<DiscountIcon fontSize='14'/>
