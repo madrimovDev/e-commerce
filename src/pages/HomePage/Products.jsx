@@ -26,7 +26,7 @@ export const Products = () => {
         <Grid
           container
           spacing={4}
-          justifyContent="center"
+          justifyContent="start"
           alignItems="stretch"
         >
           {allProduct.isLoading && (

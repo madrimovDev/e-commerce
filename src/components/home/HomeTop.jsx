@@ -9,7 +9,6 @@ import {
   InputBase,
   Paper,
   Skeleton,
-  useTheme,
 } from "@mui/material";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,7 +18,6 @@ import { useProductsByCategory } from "../../contexts/ProductsByCategory";
 const HomeTop = () => {
   const { categories, isError, isLoading } = useCategories();
   const navigation = useNavigate();
-  const { getProductsByCategory } = useProductsByCategory();
 
   const redirectCategory = (category) => {
     if (category === "all") {
@@ -30,7 +28,7 @@ const HomeTop = () => {
   };
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="lg">
       <Box
         sx={{
           display: "flex",

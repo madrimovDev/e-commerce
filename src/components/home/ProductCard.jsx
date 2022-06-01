@@ -1,4 +1,6 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Rating, Stack, Typography } from '@mui/material'
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import DiscountIcon from '@mui/icons-material/Discount';
 import React from 'react'
 
 export const ProductCard = ({ product }) => {
@@ -6,10 +8,11 @@ export const ProductCard = ({ product }) => {
 		<Card
 			variant="outlined"
 			sx={{
-				maxWidth: 345,
-				height: '100%',
-				display: 'flex',
-				flexDirection: 'column',
+				maxWidth: "100%",
+				height: "100%",
+				display: "flex",
+				flexDirection: "column",
+				justifyContent: "space-between",
 				position: 'relative',
 				transition: (theme) =>
 					theme.transitions.create('all', {
@@ -18,7 +21,7 @@ export const ProductCard = ({ product }) => {
 					}),
 				':hover': {
 					transform: 'scale(1.02)',
-          boxShadow: theme => theme.shadows[1],
+					boxShadow: theme => theme.shadows[1],
 				},
 			}}
 		>
@@ -35,25 +38,63 @@ export const ProductCard = ({ product }) => {
 			>
 				{product.category}
 			</Box>
+			<Box
+				sx={{
+					position: 'absolute',
+					top: 10,
+					left: 10,
+					fontSize: 12,
+					p: '1px 5px',
+					background: (theme) => theme.palette.warning.main,
+					color: 'white',
+					display: 'flex',
+					alignItems: 'center',
+					gap: 1,
+				}}
+			>
+				<DiscountIcon fontSize='14'/>
+				{product.rating.count}
+			</Box>
 			<CardMedia
 				component="img"
 				alt="green iguana"
-				height="280"
+				height="200"
 				image={product.image}
 				sx={{
 					objectFit: 'scale-down',
 					objectPosition: 'center',
 					width: '100%',
 					p: 3,
+					pb: 0,
 				}}
 			/>
-			<CardContent sx={{ flex: 1 }}>
-				<Typography gutterBottom variant="h6" component="div">
-					{product.title.substring(0, 20)}...
+			<CardContent sx={{
+				flex: 4,
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'space-between',
+			}}>
+				<Typography gutterBottom variant="h6" sx={{ fontSize: 18 }} component="div">
+					{product.title.substring(0, 30)}...
 				</Typography>
-				<Typography variant="body2" color="text.secondary">
-					{product.description.substring(0, 40)}...
-				</Typography>
+				<Box sx={{
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'space-between',
+				}}>
+					<Typography variant="body2" color="textSecondary" sx={{
+						display: 'flex',
+						alignItems: 'center',
+						fontSize: 16,
+						gap: 1,
+					}}>
+						<LocalOfferIcon color='action' />
+						${product.price}
+					</Typography>
+					<Stack spacing={1}>
+						<Rating name="half-rating" defaultValue={product.rating.rate} precision={0.5} sx={{ fontSize: 18 }} />
+					</Stack>
+				</Box>
 			</CardContent>
 			<CardActions sx={{ flex: 1 }}>
 				<Button size="small">Share</Button>
