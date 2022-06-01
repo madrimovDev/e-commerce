@@ -7,7 +7,6 @@ export const Products = () => {
 
   const params = useParams();
 
-  console.log(params.id);
   useEffect(() => {
     if (params.id) {
       getProductsCategory(params.id);
