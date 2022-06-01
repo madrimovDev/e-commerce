@@ -18,9 +18,20 @@ const query = {
 
   getAllCategories: async () => {
     try{
-      let result = await api.get("/categories")
+      let result = await api.get("/products/categories")
       return result
     } catch(error) {
+      console.log(error)
+      return error
+    }
+  },
+
+  getProductsByCategory: async (category) => {
+    try{
+      let result = await api.get("/products/category/" + category)
+      return result
+    }
+    catch(error){
       console.log(error)
       return error
     }
