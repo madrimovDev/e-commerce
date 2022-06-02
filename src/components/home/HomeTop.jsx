@@ -11,13 +11,14 @@ import {
   Skeleton,
 } from "@mui/material";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCategories } from "../../contexts/Categories";
-import { useProductsByCategory } from "../../contexts/ProductsByCategory";
 
 const HomeTop = () => {
   const { categories, isError, isLoading } = useCategories();
   const navigation = useNavigate();
+
+  const { id } = useParams();
 
   const redirectCategory = (category) => {
     if (category === "all") {
@@ -26,7 +27,6 @@ const HomeTop = () => {
       navigation(`/${category}`);
     }
   };
-
   return (
     <Container maxWidth="lg">
       <Box
@@ -73,7 +73,13 @@ const HomeTop = () => {
                 <Button
                   key={index}
                   onClick={() => redirectCategory(category)}
-                  variant="outlined"
+                  variant={
+                      id === category
+                      ? "contained"
+                      : category === "all" && id === undefined
+                      ? "contained"
+                      : "outlined"
+                  }
                   color="primary"
                   size={"small"}
                 >
@@ -92,9 +98,12 @@ const HomeTop = () => {
             alignItems: "center",
           }}
         >
-          <InputBase placeholder="search" sx={{
-            flex: 1,
-          }}/>
+          <InputBase
+            placeholder="search"
+            sx={{
+              flex: 1,
+            }}
+          />
           <IconButton>
             <SearchOutlined />
           </IconButton>

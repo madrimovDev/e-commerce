@@ -10,25 +10,25 @@ export const Products = () => {
   const allProduct = useAllProduct();
   const id = useParams().id;
 
-  console.log(allProduct.products)
   useEffect(() => {
     if (id === "all") return;
+
     getProductsByCategory(id);
+    // eslint-disable-next-line
   }, [id]);
 
   if (!id) {
     return (
       <div>
-        <Typography sx={{
-          fontSize: [18, 20, 22],
-          mb: [2, 5]
-        }}>All Products</Typography>
-        <Grid
-          container
-          spacing={4}
-          justifyContent="start"
-          alignItems="stretch"
+        <Typography
+          sx={{
+            fontSize: [18, 20, 22],
+            mb: [2, 5],
+          }}
         >
+          All Products
+        </Typography>
+        <Grid container spacing={4} justifyContent="start" alignItems="stretch">
           {allProduct.isLoading && (
             <>
               <Grid item xs={12} sm={6} md={4}>
@@ -52,11 +52,20 @@ export const Products = () => {
 
   return (
     <div>
-      <Typography sx={{
-        fontSize: [18, 20, 22],
-        mb: [2, 5]
-      }}>{id.toUpperCase()} Products</Typography>
-      <Grid container spacing={4} justifyContent="flex-start" alignItems="stretch">
+      <Typography
+        sx={{
+          fontSize: [18, 20, 22],
+          mb: [2, 5],
+        }}
+      >
+        {id.toUpperCase()} Products
+      </Typography>
+      <Grid
+        container
+        spacing={4}
+        justifyContent="flex-start"
+        alignItems="stretch"
+      >
         {products.isLoading && (
           <>
             <Grid item xs={12}>
