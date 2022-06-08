@@ -5,10 +5,12 @@ import { useParams } from "react-router-dom"
 import { SkeletonProduct } from "../../components/SkeletonProduct"
 import { useProduct } from "../../contexts/Product"
 
-import { LocalMallSharp } from "@mui/icons-material"
+import { LocalMallSharp, ShoppingCartRounded } from "@mui/icons-material"
+import { useCart } from "../../contexts/Cart"
 
 export const Product = () => {
 	const { product, getProductById } = useProduct()
+	const { addToCart } = useCart()
 	const { id } = useParams()
 
 	useEffect(() => {
@@ -47,6 +49,7 @@ export const Product = () => {
 							display: "flex",
 							flexDirection: "column",
 							gap: 3,
+							alignItems: "flex-start",
 						}}
 					>
 						<Typography variant="h5">{product.product.title}</Typography>
@@ -70,7 +73,32 @@ export const Product = () => {
 							/>
 							-<Typography>{product.product.rating?.count}</Typography>
 						</Box>
-						<Button variant="contained" color="warning" size="large" startIcon={<LocalMallSharp />}>Buy</Button>
+						<Box
+							sx={{
+								display: "flex",
+								gap: 2,
+							}}
+						>
+							<Button
+								variant="outlined"
+								color="warning"
+								size="large"
+								startIcon={<LocalMallSharp />}
+							>
+								Buy Now
+							</Button>
+							<Button
+								variant="contained"
+								color="warning"
+								size="large"
+								onClick={() => {
+									addToCart(product.product)
+								}}
+								startIcon={<ShoppingCartRounded />}
+							>
+								Add to Cart
+							</Button>
+						</Box>
 					</Box>
 				</Box>
 			)}

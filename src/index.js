@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
 import "./assets/styles/index.css"
 import AllProductsProvider from "./contexts/AllProducts"
+import CartProvider from "./contexts/Cart"
 import CategoriesProvider from "./contexts/Categories"
 import ProductProvider from "./contexts/Product"
 import ProductsByCategoryProvider from "./contexts/ProductsByCategory"
@@ -17,7 +18,9 @@ root.render(
 				<CategoriesProvider>
 					<ProductsByCategoryProvider>
 						<ProductProvider>
-							<Routers />
+							<CartProvider>
+								<Routers />
+							</CartProvider>
 						</ProductProvider>
 					</ProductsByCategoryProvider>
 				</CategoriesProvider>
