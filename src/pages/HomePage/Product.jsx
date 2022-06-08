@@ -1,9 +1,11 @@
-import { Box, Container, Rating, Skeleton, Typography } from "@mui/material"
+import { Box, Button, Container, Rating, Typography } from "@mui/material"
 import React from "react"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { SkeletonProduct } from "../../components/SkeletonProduct"
 import { useProduct } from "../../contexts/Product"
+
+import { LocalMallSharp } from "@mui/icons-material"
 
 export const Product = () => {
 	const { product, getProductById } = useProduct()
@@ -24,7 +26,7 @@ export const Product = () => {
 		>
 			{product.isLoading && <SkeletonProduct />}
 
-			{product.product && (
+			{product.product && !product.isLoading && (
 				<Box
 					sx={{
 						display: "flex",
@@ -68,6 +70,7 @@ export const Product = () => {
 							/>
 							-<Typography>{product.product.rating?.count}</Typography>
 						</Box>
+						<Button variant="contained" color="warning" size="large" startIcon={<LocalMallSharp />}>Buy</Button>
 					</Box>
 				</Box>
 			)}
