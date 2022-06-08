@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { AttachMoney } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 export const ProductCard = ({ product }) => {
   return (
@@ -16,6 +17,8 @@ export const ProductCard = ({ product }) => {
         height: "100%",
         position: "relative",
       }}
+      component={Link}
+      to={`/product/${product.id}`}
     >
       <Box
         sx={{
