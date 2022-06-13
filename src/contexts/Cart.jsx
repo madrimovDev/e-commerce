@@ -6,7 +6,7 @@ const CartContext = createContext({
   removeFromCart: (id) => {},
   clearCart: () => {},
   plusAmount: (id) => {},
-  minusAmount: (id) => {}
+  minusAmount: (id) => {},
 });
 CartContext.displayName = "CartContext";
 
@@ -41,26 +41,26 @@ const CartProvider = ({ children }) => {
   };
 
   const plusAmount = (id) => {
-    setCart(item => {
-      item.map(item => {
-        if(item.id === id){
-          item.total += 1
-          return item
+    setCart((item) => {
+      return item.map((i) => {
+        if (i.id === id) {
+          i.total = i.total + 1;
         }
-      })
-    })
-  }
+        return i;
+      });
+    });
+  };
 
   const minusAmount = (id) => {
-    setCart(item => {
-      item.map(item => {
-        if(item.id === id){
-          item.total -= 1
-          return item
+    setCart((item) => {
+      return item.map((i) => {
+        if (i.id === id) {
+          i.total = i.total - 1;
         }
-      })
-    })
-  }
+        return i;
+      });
+    });
+  };
 
   return (
     <CartContext.Provider
@@ -69,6 +69,8 @@ const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         clearCart,
+        plusAmount,
+        minusAmount,
       }}
     >
       {children}

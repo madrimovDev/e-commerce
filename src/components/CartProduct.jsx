@@ -5,7 +5,7 @@ import { useCart } from "../contexts/Cart";
 
 export const CartProduct = ({ product }) => {
   const [hover, setHover] = useState(false);
-  const { removeFromCart } = useCart();
+  const { removeFromCart, plusAmount, minusAmount } = useCart();
   return (
     <Box
       onMouseEnter={() => {
@@ -46,9 +46,9 @@ export const CartProduct = ({ product }) => {
         </Typography>
         <Typography>Amount:</Typography>
         <ButtonGroup color="success" size="small">
-          <Button >-</Button>
+          <Button disabled={product.total === 1 ? true : false} onClick={() => minusAmount(product.id)}>-</Button>
           <Button>{product.total}</Button>
-          <Button >+</Button>
+          <Button onClick={(() => plusAmount(product.id))}>+</Button>
         </ButtonGroup>
       </Box>
 
