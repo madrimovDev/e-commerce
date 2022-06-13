@@ -17,7 +17,6 @@ export const Product = () => {
 		getProductById(id)
 	}, [id])
 
-	console.log(product.product)
 
 	return (
 		<Container

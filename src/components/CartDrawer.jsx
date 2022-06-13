@@ -10,7 +10,6 @@ export const CartDrawer = () => {
   const { open, closeDrawer } = useDrawer();
   const { cart, clearCart } = useCart();
 
-  console.log(cart);
   return (
     <Drawer anchor="right" open={open} onClose={closeDrawer}>
       <Box

@@ -1,5 +1,5 @@
 import { DeleteOutline } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, ButtonGroup, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useCart } from "../contexts/Cart";
 
@@ -35,7 +35,7 @@ export const CartProduct = ({ product }) => {
       />
 
       <Box>
-        <Typography>{product.title.substring(0, 20)}...</Typography>
+        <Typography>{product.title.substring(0, 15)}...</Typography>
         <Typography
           sx={{
             fontSize: 20,
@@ -44,6 +44,12 @@ export const CartProduct = ({ product }) => {
         >
           ${product.price}
         </Typography>
+        <Typography>Amount:</Typography>
+        <ButtonGroup color="success" size="small">
+          <Button >-</Button>
+          <Button>{product.total}</Button>
+          <Button >+</Button>
+        </ButtonGroup>
       </Box>
 
       <Box
