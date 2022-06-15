@@ -5,6 +5,7 @@ import { MainLayout } from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import { Product } from "./pages/HomePage/Product";
 import { Products } from "./pages/HomePage/Products";
+import { Search } from "./pages/Search";
 
 const Routers = () => {
   return (
@@ -16,6 +17,7 @@ const Routers = () => {
             <Route path="/:id" element={<Products />} />
           </Route>
           <Route path="/product/:id" element={<Product />} />
+          <Route path="/search/:product" element={<Search />}/>
         </Route>
       </Routes>
       <CartDrawer />

@@ -32,3 +32,5 @@ const DialogProvider = ({ children }) => {
     </CartDialog.Provider>
   );
 };
+
+export default DialogProvider
